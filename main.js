@@ -1,17 +1,17 @@
 onload = () => {
-  const c = setTimeout(() => {
-    document.body.classList.remove("not-loaded");
-    clearTimeout(c);
-  }, 1000);
-
-  // Manejo del overlay para reproducir audio
+  // Manejo del overlay para reproducir audio y comenzar animación
   const overlay = document.getElementById("overlay");
   const audio = document.querySelector("audio");
 
   if (overlay) {
     overlay.addEventListener("click", () => {
+      // Remover la clase not-loaded para iniciar la animación
+      document.body.classList.remove("not-loaded");
+
       // Intentar reproducir audio
-      audio.play().catch((e) => console.log("Error al reproducir audio:", e));
+      if (audio) {
+        audio.play().catch((e) => console.log("Error al reproducir audio:", e));
+      }
 
       // Ocultar overlay
       overlay.style.opacity = "0";
